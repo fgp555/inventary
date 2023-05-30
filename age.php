@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="style_table.css?001">
+<link rel="stylesheet" href="style_table.css">
 
 <?php
 // Database connection details
@@ -16,19 +16,13 @@ try {
     $stmtTables = $pdo->query("SHOW TABLES");
     $tables = $stmtTables->fetchAll(PDO::FETCH_COLUMN);
 
-    // Initialize total quantity variables
-    $totalQuantityAllTables = 0;
-
     // Iterate over tables
     foreach ($tables as $table) {
-        echo "<h3>$table</h3>";
+        echo "<h3>Table: $table</h3>";
 
         // Get data from the current table
         $stmtData = $pdo->query("SELECT id, lot, quantity, DATE_FORMAT(birth, '%m / %d / %Y') AS formatted_birth FROM $table");
         $data = $stmtData->fetchAll(PDO::FETCH_ASSOC);
-
-        // Initialize total quantity for the current table
-        $totalQuantityCurrentTable = 0;
 
         // Display the data in a table
         echo "<table>";
@@ -64,23 +58,10 @@ try {
             }
 
             echo "<tr><td>$id</td><td>$lot</td><td>$quantity</td><td>$formattedBirth</td><td>$age</td></tr>";
-
-            // Sum quantity for the current table
-            $totalQuantityCurrentTable += $quantity;
         }
 
         echo "</table>";
-
-        // Display total quantity for the current table
-        echo "<h4>Total $table: $totalQuantityCurrentTable</h4><hr>";
-
-        // Add the current table's total quantity to the total quantity of all tables
-        $totalQuantityAllTables += $totalQuantityCurrentTable;
     }
-
-    // Display total quantity for all tables
-    echo "<h1 class='sumTotal'>Total: $totalQuantityAllTables</h1>";
-
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }

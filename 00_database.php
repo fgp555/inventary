@@ -1,14 +1,20 @@
 <?php
 // Database connection details
+$prefix = "fgpooswu_";
+
 $server = "localhost";
-$user = "fgpooswu_inventory_user_00";
+$user = $prefix ."inventory_user";
 $password = "p4s5w0rd_com";
-$database = "fgpooswu_inventory_00";
-$table = "table00";
-$column0 = "id"; // INT / primary key / auto-increment
-$column1 = "lot"; // VARCHAR
-$column2 = "quantity"; // INT
-$column3 = "birth"; // DATE
+$database = $prefix ."inventory_db";
+
+
+// Create a connection
+$conn = new mysqli($server, $user, $password);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 $message = "";
 

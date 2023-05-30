@@ -1,21 +1,6 @@
 <?php
-// Database connection details
-$server = "localhost";
-$user = "fgpooswu_inventory_user_00";
-$password = "p4s5w0rd_com";
-$database = "fgpooswu_inventory_00";
-$table = "table00";
-$column1 = "lot"; // VARCHAR
-$column2 = "quantity"; // INT
-$column3 = "birth"; // DATE
+require "00_connection.php";
 
-// Create a connection
-$conn = new mysqli($server, $user, $password, $database);
-
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Check if form is submitted
 if (isset($_POST['submit'])) {

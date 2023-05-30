@@ -1,0 +1,39 @@
+html {
+    margin: 4em auto;
+}
+.sumTotal {
+    position: absolute;
+    top: 0;
+    left: 0.2em;
+}
+h3 {
+    text-transform: uppercase;
+}
+/* style-table.css */
+table {
+    /* width: 100%; */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+table th,
+table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: cornflowerblue;
+    font-weight: bold;
+    text-align: left;
+}
+
+table tr:nth-child(even) {
+    background-color: #fff4;
+}
+
+table tr:nth-child(odd) {
+    background-color: #0004;
+}
+

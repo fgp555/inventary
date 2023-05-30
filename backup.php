@@ -1,9 +1,7 @@
 <?php
 // Database connection details
-$server = "localhost";
-$user = "fgpooswu_inventory_user_00";
-$password = "p4s5w0rd_com";
-$database = "fgpooswu_inventory_00";
+require "00_conn_db.php";
+
 
 // Backup file path
 $backupPath = __DIR__;
