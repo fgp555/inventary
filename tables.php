@@ -22,6 +22,8 @@
 </head>
 
 <body>
+<?php require "nav.php"; ?>
+
     <section class="nav">
         <style>
             .nav {
@@ -40,32 +42,36 @@
             }
         </style>
 
+
+        <!-- ========== create table.txt... ========== -->
         <?php
-        $currentDirectory = __DIR__;
-        $folders = glob($currentDirectory . '/*', GLOB_ONLYDIR);
-        foreach ($folders as $folder) {
-            echo "<button onclick='openInIframe(this);'>" . basename($folder) . "</button>";
+        $filename = 'table/tables.txt';
+
+        if (!file_exists($filename)) {
+            file_put_contents($filename, 'cuyes');
+        }
+
+
+        $buttonArray = array("aves", "cuyes", "perros", "otros");
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['button'])) {
+                $button = $_POST['button'];
+                file_put_contents($filename, $button);
+            }
+        }
+
+        foreach ($buttonArray as $button) {
+            echo '<form method="post" action="">';
+            echo '<button type="submit" name="button" value="' . $button . '">' . $button . '</button>';
+            echo '</form>';
         }
         ?>
-
-        <?php
-        // // Get the current directory
-        // $dir = __DIR__;
-        // // Read the files in the current directory
-        // $files = scandir($dir);
-        // // Display the files with .txt extension
-        // foreach ($files as $file) {
-        //     // Exclude directories and hidden files
-        //     if (is_file($file) && !in_array($file, array('.', '..'))) {
-        //         $fileInfo = pathinfo($file);
-        //         $extension = $fileInfo['extension'];
-        //         if ($extension === 'php') {
-        //             //echo "<div class='link'><a href='/$file'>$file</a></div>";
-        //             echo "<button onclick='openInIframe(this);'>$file</button>";
-        //         }
-        //     }
-        // }
-        ?>
+        <!-- ========== create table.txt. ========== -->
+        <script>
+            var buttonActive = document.querySelector('button[value="<?php echo file_get_contents($filename); ?>"]');
+            buttonActive.classList.add('active')
+        </script>
 
 
     </section>
@@ -90,62 +96,7 @@
             }
         </style>
 
-        <?php
-        // print "<br>";
-        // print "<br>";
-        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
-        $currentURL = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        // echo "Current URL: " . $currentURL;
-        // print "<br>";
-
-        ?>
-        <?php
-        // $REQUEST_URI1 = $_SERVER['REQUEST_URI'];
-        // echo $_SERVER['REQUEST_URI'];
-        $REQUEST_URI1 = "";
-        // echo "Current URL: " . $REQUEST_URI1;
-        ?>
-
-
-
-        <iframe id="previewFrame" src="farm" frameborder="0"></iframe>
-
-        <script>
-            function openInIframe(button) {
-                var elements = document.querySelectorAll("button");
-                for (var i = 0; i < elements.length; i++) {
-                    elements[i].classList = [];
-                    console.log(elements[i])
-                }
-
-                var url = button.textContent.trim();
-                button.classList = "active"
-                var iframe = document.getElementById("previewFrame");
-                iframe.src = "./" + url;
-            }
-        </script>
-        <script>
-            let buttonAll = document.querySelectorAll("button")
-            // console.log(buttonAll)
-            buttonAll.forEach(element => {
-                if (element.textContent == "00_conn_db.php") {
-                    element.style.display = "none"
-                }
-                if (element.textContent == "iframe.php") {
-                    element.style.display = "none"
-                }
-                if (element.textContent == "login") {
-                    element.style.display = "none"
-                }
-                if (element.textContent == "others") {
-                    element.style.display = "none"
-                }
-                if (element.textContent == "farm") {
-                    // console.log(element)
-                    element.classList = "active"
-                }
-            });
-        </script>
+        <iframe id="previewFrame" src="table" frameborder="0"></iframe>
     </section>
 </body>
 

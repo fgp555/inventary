@@ -30,10 +30,22 @@ table th {
 }
 
 table tr:nth-child(even) {
-    background-color: #fff4;
+    background-color: #fff1;
 }
 
 table tr:nth-child(odd) {
-    background-color: #0004;
+    background-color: #0001;
 }
-
+@media only screen and (max-width: 40rem) {
+    /* Hide the fourth column in mobile devices */
+     tr td:nth-child(4),
+     tr th:nth-child(4) {
+      display: none;
+    }
+     tr td:nth-child(1),
+     tr th:nth-child(1) {
+      /* display: none; */
+      color: #444;
+    }
+  }
+  

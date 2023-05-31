@@ -8,6 +8,7 @@
 *.bat
 *.sh
 *.sql
+*.txt
 .vite
 /img
 /lib

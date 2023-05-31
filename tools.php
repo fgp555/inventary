@@ -22,6 +22,8 @@
 </head>
 
 <body>
+    <?php require "nav.php"; ?>
+
     <section class="nav">
         <style>
             .nav {
@@ -108,7 +110,7 @@
 
 
 
-        <iframe id="previewFrame" src="farm" frameborder="0"></iframe>
+        <iframe id="previewFrame" src="index.php" frameborder="0"></iframe>
 
         <script>
             function openInIframe(button) {
@@ -128,7 +130,7 @@
             let buttonAll = document.querySelectorAll("button")
             // console.log(buttonAll)
             buttonAll.forEach(element => {
-                if (element.textContent == "00_conn_db.php") {
+                if (element.textContent == "nav.php") {
                     element.style.display = "none"
                 }
                 if (element.textContent == "iframe.php") {
@@ -140,7 +142,16 @@
                 if (element.textContent == "others") {
                     element.style.display = "none"
                 }
-                if (element.textContent == "farm") {
+                if (element.textContent == "tables.php") {
+                    element.style.display = "none"
+                }
+                if (element.textContent == "tools.php") {
+                    element.style.display = "none"
+                }
+                if (element.textContent == "00_conn_db.php") {
+                    element.style.display = "none"
+                }
+                if (element.textContent == "index.php") {
                     // console.log(element)
                     element.classList = "active"
                 }
